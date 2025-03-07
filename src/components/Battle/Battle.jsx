@@ -10,6 +10,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
 
     // Reset HP when new Pokémon are assigned (in case of a new battle)
     useEffect(() => {
+        new Audio(playerOnePokemon?.cries?.latest).play();
+        new Audio(playerTwoPokemon?.cries?.latest).play();
         setPlayerOneHP(getMaxHP(playerOnePokemon));
         setPlayerTwoHP(getMaxHP(playerTwoPokemon));
     }, [playerOnePokemon, playerTwoPokemon]);
@@ -49,17 +51,17 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
         <div className="battle-container">
             <h1>Pokémon Battle</h1>
             <button onClick={handleRematch}>Rematch</button>
-            <Combatant 
-                player="one" 
-                pokemonData={playerOnePokemon} 
-                currentHP={playerOneHP} 
+            <Combatant
+                player="one"
+                pokemonData={playerOnePokemon}
+                currentHP={playerOneHP}
             />
-            <Combatant 
-                player="two" 
-                pokemonData={playerTwoPokemon} 
-                currentHP={playerTwoHP} 
+            <Combatant
+                player="two"
+                pokemonData={playerTwoPokemon}
+                currentHP={playerTwoHP}
             />
-            
+
             {playerOneHP > 0 && playerTwoHP > 0 && turn === "one" && (
                 <button onClick={handlePlayerOneAttack}>Attack</button>
             )}

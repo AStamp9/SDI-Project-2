@@ -23,6 +23,7 @@ export default function PokemonCard(data) {
         (pokemon?.sprites) ?
             ((pokemon?.sprites?.other?.showdown?.front_default) ? (
                 <div onClick={() => {
+                    // new Audio(pokemon?.cries?.latest).play();
                     navigate(`/pokemonDetails/${pokemon.name}`)
                 }} className='pokemon-card'>
                     <img className='pokemon-card-img' src={pokemon['sprites']['other']['showdown']['front_default'] ?? pokemon?.sprites?.front_default} />
