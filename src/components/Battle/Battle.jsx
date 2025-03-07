@@ -11,8 +11,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
 
     // Reset HP when new Pokémon are assigned (in case of a new battle)
     useEffect(() => {
-        new Audio(playerOnePokemon?.cries?.latest).play();
-        new Audio(playerTwoPokemon?.cries?.latest).play();
+        const soundOne = new Audio(playerOnePokemon?.cries?.latest)?.play();
+        const soundTwo = new Audio(playerTwoPokemon?.cries?.latest)?.play();
         setPlayerOneHP(getMaxHP(playerOnePokemon));
         setPlayerTwoHP(getMaxHP(playerTwoPokemon));
     }, [playerOnePokemon, playerTwoPokemon]);
