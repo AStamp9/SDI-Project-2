@@ -16,6 +16,12 @@ function App() {
   const navigate = useNavigate();
   const { mode, toggleMode } = colorMode();
 
+  const [details, setDetails] = useState({});
+  const value = { details, setDetails };
+  const [typeList, setTypeList] = useState([])
+  const typeValue = { typeList, setTypeList }
+
+
   const [pokemonOne, setPokemonOne] = useState(null);
   const [pokemonTwo, setPokemonTwo] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,25 +59,25 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault();
     const trimmedQuery = searchInputRef.current.value.trim().toLowerCase();
-    
+
     if (!trimmedQuery) {
       setError("Enter a valid Pokémon name or ID");
       return;
     }
-    
+
     setError(""); // Clear previous errors
     navigate(`/pokemonDetails/${trimmedQuery}`);
   };
 
   return (
     <>
-      <PokemonTypesContext.Provider value={{}}>
-        <PokemonContext.Provider value={{}}>
+      <PokemonTypesContext.Provider value={typeValue}>
+        <PokemonContext.Provider value={value}>
           <nav>
             <button onClick={toggleMode}>Toggle Dark Mode</button>
             <button onClick={() => navigate('/')}>Pokemon Types</button>
             <button onClick={() => { fetchRandomPokemon(); navigate('/battle'); }}>New Battle</button>
-            
+
             {/* 🟢 Search Input with useRef (no re-renders) */}
             <form id="search-form" onSubmit={handleSearch}>
               <input
@@ -89,7 +95,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/battle' element={
-              loading ? <p>Loading Pokémon...</p> : 
+              loading ? <p>Loading Pokémon...</p> :
               (pokemonOne && pokemonTwo ? <Battle playerOnePokemon={pokemonOne} playerTwoPokemon={pokemonTwo} fetchNewPokemon={fetchRandomPokemon} /> : <p>Error loading battle.</p>)
             } />
             <Route path='/pokemonTypeList' element={<PokemonTypeList />} />
