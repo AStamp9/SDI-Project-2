@@ -3,19 +3,19 @@ import Combatant from "../Combatant/Combatant";
 import './Battle.css';
 
 export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPokemon }) {
-    const getMaxHP = (pokemon) => pokemon.stats[0]?.base_stat || 100;
+    const getMaxHP = (pokemon) => pokemon?.stats[0]?.base_stat || 100;
 
     const [playerOneHP, setPlayerOneHP] = useState(getMaxHP(playerOnePokemon));
     const [playerTwoHP, setPlayerTwoHP] = useState(getMaxHP(playerTwoPokemon));
     const [turn, setTurn] = useState('one');
 
-    const [playerOneAnim, setplayerOneAnim] = useState();
-    const [playerTwoAnim, setplayerTwoAnim] = useState();
+    const [playerOneAnim, setPlayerOneAnim] = useState();
+    const [playerTwoAnim, setPlayerTwoAnim] = useState();
 
     // Reset HP when new Pokémon are assigned (in case of a new battle)
     useEffect(() => {
-        setplayerOneAnim('idle-back');
-        setplayerTwoAnim('idle-front');
+        setPlayerOneAnim('idle-back');
+        setPlayerTwoAnim('idle-front');
         const soundOne = new Audio(playerOnePokemon?.cries?.latest)?.play();
         const soundTwo = new Audio(playerTwoPokemon?.cries?.latest)?.play();
         setPlayerOneHP(getMaxHP(playerOnePokemon));
@@ -29,8 +29,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
 
     const handlePlayerOneAttack = () => {
         if (playerOneHP > 0 && playerTwoHP > 0) {
-            setplayerTwoAnim('idle-front');
-            setplayerOneAnim('attack-back');
+            setPlayerTwoAnim('idle-front');
+            setPlayerOneAnim('attack-back');
             attackOpponent(setPlayerTwoHP);
             setTurn("two");
         }
@@ -40,11 +40,18 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
     useEffect(() => {
         if (turn === "two" && playerTwoHP > 0 && playerOneHP > 0) {
             const timer = setTimeout(() => {
-                setplayerOneAnim('idle-back');
-                setplayerTwoAnim('attack-front');
+                setPlayerOneAnim('idle-back');
+                setPlayerTwoAnim('attack-front');
                 attackOpponent(setPlayerOneHP);
                 setTurn("one");
             }, 500);
+
+            if (playerOneHP <= 0) {
+                setPlayerOneAnim('faint');
+            }
+            if (playerTwoHP <= 0) {
+                setPlayerTwoAnim('faint');
+            }
 
             return () => clearTimeout(timer);
         }
@@ -56,8 +63,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
         setPlayerTwoHP(getMaxHP(playerTwoPokemon));
         setTurn("one");
 
-        setplayerOneAnim('idle-back');
-        setplayerTwoAnim('idle-front');
+        setPlayerOneAnim('idle-back');
+        setPlayerTwoAnim('idle-front');
     };
 
     return (
@@ -84,8 +91,9 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
                 <button onClick={handlePlayerOneAttack}>Attack</button>
             )}
 
-            {playerOneHP <= 0 ? <p>{playerOnePokemon.name?.toUpperCase()} has fainted! Player 2 wins!</p> : null}
-            {playerTwoHP <= 0 ? <p>{playerTwoPokemon.name?.toUpperCase()} has fainted! Player 1 wins!</p> : null}
+            {playerOneHP <= 0 ? <p>{playerOnePokemon?.name?.toUpperCase()} has fainted! Player 2 wins!</p> : null}
+
+            {playerTwoHP <= 0 ? <p>{playerTwoPokemon?.name?.toUpperCase()} has fainted! Player 1 wins!</p> : null}
 
             <p>Current Turn: {turn === "one" ? "Player 1" : "Player 2 (Auto)"}</p>
 

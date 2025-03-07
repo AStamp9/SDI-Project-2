@@ -6,10 +6,12 @@
 
 .idle-front {
     transform: translate(0px, 16px);
+    /* opacity: 100%; */
 }
 
 .idle-back {
     transform: translate(0px, 64px);
+    /* opacity: 100%; */
 }
 
 .attack-front {
@@ -50,9 +52,15 @@
 
 
 
-.faint-front {
+.faint {
+    animation: faint 2s ease-in forwards;
 }
 
-.faint-back {
-
+@keyframes faint {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
 }
