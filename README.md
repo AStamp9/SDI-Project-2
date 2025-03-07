@@ -58,6 +58,28 @@ At any point you can navigate back to the type list page by clicking on the Poke
 
 ### Screenshots
 
+#### Wireframe
+##### Macro
+![Wireframe Macro](https://github.com/AStamp9/SDI-Project-2/blob/main/images/WireFrame/WireFrameMacro.png)
+##### Type Home Tree
+![Wireframe Type Home Tree](https://github.com/AStamp9/SDI-Project-2/blob/main/images/WireFrame/WireFrameTypeHomeTree.png)
+##### Pokemon Details Tree
+![Wireframe Pokemon Details Tree](https://github.com/AStamp9/SDI-Project-2/blob/main/images/WireFrame/WireFramePokemonDetailsTree.png)
+#### Battle Page
+![Wireframe Battle Page](https://github.com/AStamp9/SDI-Project-2/blob/main/images/WireFrame/WireFrameBattlePage.png)
+
+#### Types Homepage
+![Pokemon Types](https://github.com/AStamp9/SDI-Project-2/blob/main/images/TypesHomepage.png)
+
+#### Pokemon Type
+![Pokemon Type](https://github.com/AStamp9/SDI-Project-2/blob/main/images/PokemonType.png)
+
+#### Type Details
+![Type Details](https://github.com/AStamp9/SDI-Project-2/blob/main/images/TypeDetails.png)
+
+#### Battle Page
+![Battle Page](https://github.com/AStamp9/SDI-Project-2/blob/main/images/BattlePage.png)
+
 ## Running Test
 
 **All test dependencies should already be in the package.json and install automatically with you ran npm install**
