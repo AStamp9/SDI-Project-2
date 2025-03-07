@@ -1,7 +1,21 @@
-.idle-front {
+.combatant {
+    display: inline-block;
+    padding-left: 16px;
+    padding-right: 16px;
+}
 
+.idle-front {
+    transform: translateY(16px);
 }
 
 .idle-back {
-
+    transform: translateY(32px);
 }
+
+.attack-front {}
+
+.attack-back {}
+
+.faint-front {}
+
+.faint-back {}

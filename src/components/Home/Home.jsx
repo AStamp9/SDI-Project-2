@@ -19,7 +19,7 @@ function Home() {
     return (
         <>
             {/* <button>Reset</button> */}
-            <h1>Pokemon Types</h1>
+            <h1>POKEMON TYPES</h1>
             <div className = 'pokemon-types-box'>
                 {typeList.map(pokemonType => <PokemonTypeCard data={pokemonType} key={pokemonType.id}></PokemonTypeCard>
                 )}

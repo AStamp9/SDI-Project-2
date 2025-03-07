@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Combatant from "../Combatant/Combatant";
+import './Battle.css';
 
 export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPokemon }) {
     const getMaxHP = (pokemon) => pokemon.stats[0]?.base_stat || 100;
@@ -51,16 +52,19 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
         <div className="battle-container">
             <h1>Pokémon Battle</h1>
             <button onClick={handleRematch}>Rematch</button>
-            <Combatant
-                player="one"
-                pokemonData={playerOnePokemon}
-                currentHP={playerOneHP}
-            />
-            <Combatant
-                player="two"
-                pokemonData={playerTwoPokemon}
-                currentHP={playerTwoHP}
-            />
+            <div className='battle-arena'>
+                <Combatant
+                    player="one"
+                    pokemonData={playerOnePokemon}
+                    currentHP={playerOneHP}
+                />
+                <Combatant
+                    player="two"
+                    pokemonData={playerTwoPokemon}
+                    currentHP={playerTwoHP}
+                />
+            </div>
+
 
             {playerOneHP > 0 && playerTwoHP > 0 && turn === "one" && (
                 <button onClick={handlePlayerOneAttack}>Attack</button>

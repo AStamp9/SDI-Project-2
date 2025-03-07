@@ -1,0 +1,8 @@
+.battle-arena {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding: 100px;
+}
