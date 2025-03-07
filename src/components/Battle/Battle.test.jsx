@@ -13,6 +13,6 @@ describe('Battle', () => {
     });
 
     test("Renders the Battle and checks the title text", () => {
-      expect(screen.getByText('Battle')).toBeInTheDocument();
+      expect(screen.getByText('Battle', {exact: false})).toBeInTheDocument();
     });
 });

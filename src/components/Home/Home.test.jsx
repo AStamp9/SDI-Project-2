@@ -27,7 +27,7 @@ describe('Home', () => {
     });
 
     test("Renders the Home and checks the title text", async () => {
-      expect(await screen.getByText('Pokemon Types')).toBeInTheDocument();
+      expect(await screen.getByText(/Pokemon Types/i)).toBeInTheDocument();
     });
 
 

@@ -15,6 +15,11 @@ Given that type match-ups play a crucial role in battles, when I compare a Pokem
 - Show **base stats** (HP, Attack, Defense, etc.)
 - View **damage relations** (Strong Against, Weak Against, Neutral) by type
 
+## Planning Process Documents
+
+[Kanban Board](https://trello.com/b/5zlaaPnD/sdi-project-2-team-6)<br>
+[Wireframe/Decision Tree](https://miro.com/app/board/uXjVIW0kveI=/)
+
 ## Installation & Running the App
 
 **Clone the Repository**

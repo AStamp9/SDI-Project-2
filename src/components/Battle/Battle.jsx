@@ -9,8 +9,13 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
     const [playerTwoHP, setPlayerTwoHP] = useState(getMaxHP(playerTwoPokemon));
     const [turn, setTurn] = useState('one');
 
+    const [playerOneAnim, setplayerOneAnim] = useState();
+    const [playerTwoAnim, setplayerTwoAnim] = useState();
+
     // Reset HP when new Pokémon are assigned (in case of a new battle)
     useEffect(() => {
+        setplayerOneAnim('idle-back');
+        setplayerTwoAnim('idle-front');
         const soundOne = new Audio(playerOnePokemon?.cries?.latest)?.play();
         const soundTwo = new Audio(playerTwoPokemon?.cries?.latest)?.play();
         setPlayerOneHP(getMaxHP(playerOnePokemon));
@@ -24,6 +29,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
 
     const handlePlayerOneAttack = () => {
         if (playerOneHP > 0 && playerTwoHP > 0) {
+            setplayerTwoAnim('idle-front');
+            setplayerOneAnim('attack-back');
             attackOpponent(setPlayerTwoHP);
             setTurn("two");
         }
@@ -33,6 +40,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
     useEffect(() => {
         if (turn === "two" && playerTwoHP > 0 && playerOneHP > 0) {
             const timer = setTimeout(() => {
+                setplayerOneAnim('idle-back');
+                setplayerTwoAnim('attack-front');
                 attackOpponent(setPlayerOneHP);
                 setTurn("one");
             }, 500);
@@ -46,6 +55,9 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
         setPlayerOneHP(getMaxHP(playerOnePokemon));
         setPlayerTwoHP(getMaxHP(playerTwoPokemon));
         setTurn("one");
+
+        setplayerOneAnim('idle-back');
+        setplayerTwoAnim('idle-front');
     };
 
     return (
@@ -57,11 +69,13 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
                     player="one"
                     pokemonData={playerOnePokemon}
                     currentHP={playerOneHP}
+                    currentAnimation={playerOneAnim}
                 />
                 <Combatant
                     player="two"
                     pokemonData={playerTwoPokemon}
                     currentHP={playerTwoHP}
+                    currentAnimation={playerTwoAnim}
                 />
             </div>
 
@@ -70,8 +84,8 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
                 <button onClick={handlePlayerOneAttack}>Attack</button>
             )}
 
-            {playerOneHP <= 0 ? <p>{playerOnePokemon.name} has fainted! Player 2 wins!</p> : null}
-            {playerTwoHP <= 0 ? <p>{playerTwoPokemon.name} has fainted! Player 1 wins!</p> : null}
+            {playerOneHP <= 0 ? <p>{playerOnePokemon.name?.toUpperCase()} has fainted! Player 2 wins!</p> : null}
+            {playerTwoHP <= 0 ? <p>{playerTwoPokemon.name?.toUpperCase()} has fainted! Player 1 wins!</p> : null}
 
             <p>Current Turn: {turn === "one" ? "Player 1" : "Player 2 (Auto)"}</p>
 

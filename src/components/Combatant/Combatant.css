@@ -5,17 +5,54 @@
 }
 
 .idle-front {
-    transform: translateY(16px);
+    transform: translate(0px, 16px);
 }
 
 .idle-back {
-    transform: translateY(64px);
+    transform: translate(0px, 64px);
 }
 
-.attack-front {}
+.attack-front {
+    animation: attackFront 0.5s ease-out forwards;
+}
 
-.attack-back {}
+@keyframes attackFront {
+    0% {
+        transform: translate(0px, 16px);
+    }
 
-.faint-front {}
+    50% {
+        transform: translate(-100px, 64px);
+    }
 
-.faint-back {}
+    100% {
+        transform: translate(0px, 16px);
+    }
+}
+
+.attack-back {
+    animation: attackBack 0.5s ease-out forwards;
+}
+
+@keyframes attackBack {
+    0% {
+        transform: translate(0px, 64px);
+    }
+
+    50% {
+        transform: translate(80px, 48px);
+    }
+
+    100% {
+        transform: translate(0px, 64px);
+    }
+}
+
+
+
+.faint-front {
+}
+
+.faint-back {
+
+}

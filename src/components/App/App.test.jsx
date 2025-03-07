@@ -13,6 +13,6 @@ describe('App', () => {
     });
 
     test("Renders the App and checks the button and title text", () => {
-      expect(screen.getAllByText('Pokemon Types').length).toBe(2);
+      expect(screen.getAllByText('Pokemon Types', {exact: false}).length).toBe(2);
     });
 });
