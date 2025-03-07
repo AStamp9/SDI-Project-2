@@ -52,6 +52,17 @@ function App() {
     setLoading(false);
   };
 
+  // set type list
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/type/')
+      .then(res => res.json())
+      .then(data => {
+        let results = data.results;
+        results = results.slice(0, -2);
+        setTypeList(results);
+      })
+  }, [])
+
   // Fetch Pokémon on initial load
   useEffect(() => {
     fetchRandomPokemon();
