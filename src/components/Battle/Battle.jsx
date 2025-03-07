@@ -45,14 +45,6 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
                 attackOpponent(setPlayerOneHP);
                 setTurn("one");
             }, 500);
-
-            if (playerOneHP <= 0) {
-                setPlayerOneAnim('faint');
-            }
-            if (playerTwoHP <= 0) {
-                setPlayerTwoAnim('faint');
-            }
-
             return () => clearTimeout(timer);
         }
     }, [turn, playerTwoHP, playerOneHP]);
@@ -66,6 +58,15 @@ export default function Battle({ playerOnePokemon, playerTwoPokemon, fetchNewPok
         setPlayerOneAnim('idle-back');
         setPlayerTwoAnim('idle-front');
     };
+
+    useEffect(() => {
+        if (playerOneHP <= 0) {
+            setPlayerOneAnim('faint-back');
+        }
+        if (playerTwoHP <= 0) {
+            setPlayerTwoAnim('faint-front');
+        }
+    }, [playerOneHP, playerTwoHP])
 
     return (
         <div className="battle-container">

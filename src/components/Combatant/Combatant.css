@@ -52,14 +52,30 @@
 
 
 
-.faint {
-    animation: faint 2s ease-in forwards;
+.faint-back {
+    animation: faintBack 1s ease-in forwards;
 }
 
-@keyframes faint {
+@keyframes faintBack {
+    0% {
+        transform: translate(0px, 64px);
+        opacity: 100%;
+    }
+    100% {
+        transform: translate(0px, 64px);
+        opacity: 0%;
+    }
+}
+
+.faint-front {
+    animation: faintFront 1s ease-in forwards;
+}
+
+@keyframes faintFront {
     0% {
         opacity: 100%;
     }
+
     100% {
         opacity: 0%;
     }
